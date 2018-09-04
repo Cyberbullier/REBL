@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Season, Category, Product
+from .models import Season, Category, Apparel
 
 # Register your models here.
 
@@ -10,6 +10,7 @@ class Season_admin(admin.ModelAdmin):
     """
     list_display = ['name', 'slug', 'image', 'season_available', 'description']
     prepopulated_fields = {'slug':('name', )}
+    # fields in the admin webpage you can edit on same without being redirected to anotherpage, can't be be a link at the same time, bye default first list_display item is a link, so need to change that if you want to turn flist_display[0} into an editable
     list_editable = ['description']
 
 
@@ -23,9 +24,14 @@ class Category_admin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name', )}
 
 
+
+
+
+
+
 admin.site.register(Category, Category_admin)
 
-class Product_admin(admin.ModelAdmin):
+class Apparel_admin(admin.ModelAdmin):
     """
     admin authorization to model
     """
@@ -35,4 +41,4 @@ class Product_admin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name', )}
 
 
-admin.site.register(Product, Product_admin)
+admin.site.register(Apparel, Apparel_admin)

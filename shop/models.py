@@ -30,7 +30,7 @@ class Category(models.Model):
     name = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
     description = models.TextField(blank=True)
-    season = models.ForeignKey(Season, on_delete=models.CASCADE)
+
 
     class Meta:
         """
@@ -39,6 +39,8 @@ class Category(models.Model):
         ordering = ('name',)
         verbose_name = 'category'
         verbose_name_plural = 'categories'
+
+
 
     def __str__(self):
         """
@@ -52,6 +54,8 @@ class Product(models.Model):
     """
     unique product per category per season
     """
+    shopping_cart = models.ForeignKey(Shopping_cart, on_delete=models.CASCADE)
+    season = models.ForeignKey(Season, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
@@ -71,6 +75,20 @@ class Product(models.Model):
         verbose_name = 'product'
         verbose_name_plural = 'products'
 
+    def season_foreignkey_controller(self):
+        """enables/disables connection between Season and Product"""
+        if self.season and self.name.startswith != 'season':
+            seasonless_product = Season.objects.filter(id=self.name.startswith != 'season').delete()
+            return seasonless_product
+        else:
+            pass
+
+
+
+
+
+
+
     def __str__(self):
         """
         readable representation of class
@@ -78,12 +96,4 @@ class Product(models.Model):
         :rtype: str
         """
         return '{}'.format(self.name )
-
-class Beats(models.Model):
-    """
-    digital good
-    """
-    shopping_cart = models.ForeignKey(Shopping_cart, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
 
