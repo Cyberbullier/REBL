@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{%  extends 'shop/base.html' %}
+{% load staticfiles %}
+{% block metadescription %}
+    <!-- rememebr double braces in django templates lets you access variables
+    from context dict -->
+    {% if category %}
+        # truncates('...') description after 155 words
+        {{ category.description|truncatewords:155 }}
+    {% else %}
+        shop homepage
+    {% endif %}
+{% endblock %}
+{% block title %}
+    {% if category %}
+        {{ category.name }} - Rebl shop
+    {% else %}
+        test - Rebl shop
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <!-- category navigation bar -->
+    {% if category %}
+        <div>
+            <div>
+                <p><a href="{% url 'shop:index' %}">our product collection</a>|{{ category.name }} </p>
+            </div>
+        </div>
+    {% endif %}
+<div>
+<!-- if available post request, display static images -->
+{% if category.image.url %}
+        <img src="{{ category.image.url }} " alt="{{ category.name }}">
+</div>
+<br>
+<div>
+    <h1>{{category.name }}</h1>
+    <p>{{ category.description }}</p>
+    <div>
+{% else %}
+<img src="{% static 'shop/jeff_test.jpg' %}" alt='our products collection'>
+    </div>
+</div>
+<br>
+<div>
+    <h1>Our products</h1>
+    <p>homepage for products</p>
+</div>
+{% endif %}
+<div>
+    <div>
+    {% for apparel in apparel %}
+        <div>
+            <div>
+                <a href="{{ apparel.get_url }}"><img src="{{ apparel.image.url }}" alt = "{{ apparel.name }}"></a>
+                <div>
+                    <h4>{{ apparel.name }}</h4>
+                    <p>&dollar; {{ apparel.price }}</p>
+                </div>
+            </div>
+        </div>
+    {%  endfor %}
+    </div>
+</div>
+{% endblock %}

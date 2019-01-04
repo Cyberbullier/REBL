@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+#import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
 
 
-    # cutom apps
+    # custom apps
     'mysite',
     'shop',
 ]
@@ -74,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processors.nav_bar_links',
             ],
         },
     },
@@ -130,12 +132,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# folder in which you django project will store all of
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# collects content from all the folders specified  in STATICFILES_DIR and stores
+# it into a singular folder
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     #'/var/www/static/',
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join (BASE_DIR, 'static', 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+#configure django app for heroku
+#django_heroku.settings(locals())
+

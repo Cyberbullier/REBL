@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load staticfiles %}
+<nav>
+    <ul>
+        <li><a href="{% url 'shop:index' %}">all products</a></li>
+        {% for link in links %}
+            <li> <a href='{{ link.get_url }}'> {{ link.name }}</a></li>
+
+        {% endfor %}
+        <li>your cart()</li>
+    </ul>
+</nav>
+<br>
