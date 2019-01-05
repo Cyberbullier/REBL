@@ -1,7 +1,9 @@
 {%  load staticfiles %}
 <header>
     <center>
-        <img src="{% static 'img/test_daniel_ig.jpg' %}" alt="header image">
+        <!-- for url,use html file path name in urls.py -->
+        <!-- for static, filepath name rules are same as normal html -->
+        <a href="{% url 'shop:index' %}"><img src="{% static 'img/jeff_header.jpg' %}" alt="header image"></a>
 
 
     </center>

@@ -1,0 +1,26 @@
+body{
+    font-family: Roboto, sans-serif;
+}
+/*****Custom navbar css`*****
+
+ */
+.nav-item {
+    letter-spacing: .2em;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.dropdown-item{
+    font-size: 14px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+/**** custom footer**/
+.my_footer{
+    background-color:#000000;
+    height: 60px;
+}
+/** only affects within paragraph tags in container with .my_footer class**/
+.my_footer p{
+    padding-top: 20px;
+    font-size: 14px;
+}
