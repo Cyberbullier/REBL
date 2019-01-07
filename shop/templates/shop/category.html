@@ -17,6 +17,7 @@
         test - Rebl shop
     {% endif %}
 {% endblock %}
+=============================================================================
 {% block content %}
     <!-- category navigation bar -->
     {% if category %}
@@ -28,18 +29,19 @@
         </div>
     {% endif %}
 <div class="mx-auto">
-<!-- if available post request, display static images -->
-{% if category.image.url %}
-        <img class="my_image" src="{{ category.image.url }} " alt="{{ category.name }}">
+
+    <!-- if available post request, display static images -->
+{% if category %}
+        <img class="my_image" src="{{ category.image.url }}" alt="{{ category.name }}">
 </div>
 <br>
 <div>
     <h1 class="text-center my_title">{{category.name }}</h1>
-    <p class="text-justify">{{ category.description }}</p>
-    <div class="my_image my_image_padding">
+    <p class="text-justify">{{category.description }}</p>
+</div>
 {% else %}
-<img src="{% static 'shop/jeff_test.jpg' %}" alt='our products collection'>
-    </div>
+<div class="my_image my_image_padding">
+    <img src="{% static 'shop/jeff_test.jpg' %}" alt='our products collection'>
 </div>
 <br>
 <div>
