@@ -53,7 +53,7 @@
     <!-- since using bootstrap, need to incorporate 'container' class in normal html container tags -->
 <div class="container">
     <div class="row mx-auto">
-    {% for apparel in apparel %}
+    {% for apparel in apparel.object_list %}
         <!-- use bs grid system to make mobile responsive -->
         <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-md-12 col-lg-4">
         <!-- bs card container , text-centr centres title and price-->
@@ -68,5 +68,18 @@
         </div>
     {%  endfor %}
     </div>
+<!-- implemnted proper page number for frontend  with logic from views via paginator-->
+<div class="mx-auto">
+    {% if apparel.paginator.num_pages >= 2 %}
+        <hr>
+        <div class="text-center">
+        <hr>
+        {% for i in apparel.paginator.page_range %}
+            <a href="?page={{i}}" class="btn btn-light act {% if apparel.number == i %}active{% endif %}"> {{ i }}</a>
+        {% endfor %}
+        </div>
+    {% endif %}
+</div>
+<br>
 </div>
 {% endblock %}
