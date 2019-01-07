@@ -43,7 +43,7 @@ body{
 
 }
 .my_title{
-    font-size: 16px;
+    font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 2em;
 }
@@ -57,4 +57,28 @@ body{
     font-size: 30px;
     text-transform: uppercase;
     letter-spacing: .2em;
+}
+/**********product page*************/
+.my_prod_row_class {
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+.my_prod_row_class .mx-auto p{
+    color: #000000;
+    font-size: 16px;
+}
+.my_prod_row_class .mx-auto p a{
+    color: #000000;
+    font-size: 16px;
+    text-decoration: none;
+}
+.my_prod_title{
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing:.2em;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+.my_prod_text{
+    padding-right: 20px;
 }
