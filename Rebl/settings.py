@@ -47,9 +47,8 @@ INSTALLED_APPS = [
     # custom apps
     'mysite',
     'shop',
+    'search',
 ]
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
