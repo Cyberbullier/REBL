@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'mysite',
     'shop',
     'search',
+    'shoppingcart'
 ]
 
 MIDDLEWARE = [

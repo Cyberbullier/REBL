@@ -88,3 +88,33 @@ body{
     padding-top: 20px;
 
 }
+/******** shopping cart page ******/
+.custom_table{
+    min-width: 400px;
+    font-size: 14px;
+}
+    /*** important is used to make css rule priority, meaning every class with tag that has !important will always have the property that precedes!importatnt***/
+.custom_thead{
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    background-color: #dabefd;
+}
+.custom_image{
+    width: 100px;
+    height: 100px;
+}
+.custom_a{
+    text-decoration: none;
+
+}
+.custom_icon{
+  /***need button colour ***/
+    text-decoration: none;
+    color: #868e96!important;
+
+}
+.custom_button{
+    margin-top:5px;
+
+}
