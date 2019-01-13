@@ -62,13 +62,14 @@
                     {% if x.quantity < x.product.stock %}
                         <td>
                             <!-- second argument for url is int for product id -->
-                            <a href="{%  url 'shop:shoppingcart:add_cart' x.product.id %}" class="custom_a"><i class="fas fa-plus-circle custom_icon"></i></a>
-                        &nbsp;<a href="????"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp;<a href="????" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
+                            <!-- only implemented stock manipulation for adding stuff to cart, didnt do when deleting stuff from cart -->
+                            <a href="{%  url 'shop:shoppingcart:add_cart' x.product.id %}" class="custom_a"><i class="fas fa-plus-circle custom_icon"></i></a>&nbsp;
+                        &nbsp;<a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp:<a href="{% url 'shop:shoppingcart:full_remove_from_cart' x.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
                         </td>
                     <!-- if we can't add more products to the cart -->
                     {% else %}
                      <td>
-                        &nbsp;<a href="????"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp;<a href="????" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
+                        &nbsp;<a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp;<a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
                      </td>
                     <td>
 

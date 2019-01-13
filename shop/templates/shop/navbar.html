@@ -15,18 +15,18 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{% url 'shop:index' %}">all products</a>
             {% for cat_link in links %}
-            <a class="dropdown-item" href="{{ cat_link.get_url }}">{{ cat_link.name }}</a>
-
-
+                <a class="dropdown-item" href="{{ cat_link.get_url }}">{{ cat_link.name }}</a>
             {% endfor %}
         </div>
-      </li>
+        </li>
 <!-- implement icon for shopping cart -->
+    {% if item_count > 0 %}
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-shopping-bag"></i></a>
+<!-- implemented quantity count in shopping cart next to shopping cart icon -->
+        <a class="nav-link" href="{% url 'shop:shoppingcart:cart_detail' %}"><i class="fas fa-shopping-bag"></i>({{ item_count }})</a>
       </li>
 
-
+    {% endif %}
     </ul>
     <form action="{% url 'shop:search:search_result' %}" method="get" class="form-inline my-2 my-lg-0">
         {% csrf_token %}

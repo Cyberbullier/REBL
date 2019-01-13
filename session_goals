@@ -1,0 +1,10 @@
+1.) stop adding product once stock thrshold reach
+2.) show how many products in shopping count
+3.) remove quantitity when press minus icon while in cart
+4.) remove product when trash icon pressed
+
+
+need to eventually implement:
+1. appropriate logic for different products
+2. even if cart is empty , icon should still appear and you should be able to
+click it, thus getting redirected to empty cart
