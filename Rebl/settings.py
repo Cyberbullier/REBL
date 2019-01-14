@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party
-    'crispy_forms',
+    # 'crispy_forms',
     'stripe',
     'sorl.thumbnail',
 
@@ -152,7 +152,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 STRIPE_PUBLISHABLE_KEY = 'pk_test_chgSsG2gRzRwu6HP7L92Z0ph'
 STRIPE_SECRET_KEY = 'sk_test_bvXRVKS8lvATZky07xhvXUHD'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #configure django app for heroku
 #django_heroku.settings(locals())
 

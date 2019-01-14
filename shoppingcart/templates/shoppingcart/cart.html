@@ -107,6 +107,7 @@
             </tbody>
             </table>
         <div class="mx-auto">
+            <!-- content after this doesnt display because of for....-->
             <form action="" method="POST">
                 {% csrf_token %}
                 <script
@@ -114,12 +115,12 @@
                 data-key="{{ data_key }}"
                 data-amount="{{ stripe_total }}"
                 data-name="REBL"
-                data-description={{ description }}
-                data-image='{% static 'img/logo.jpg' %}
+                data-description='{{ description }}'
+                data-image='{% static 'img/logo.jpg' %}'
                 data-locale="auto"
                 data-currency="cad"
                 data-shipping-address="true"
-                data-billing-adress="true"
+                data-billing-address="true"
                 data-zip-code="true">
                 </script>
             </form>
