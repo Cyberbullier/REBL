@@ -14,6 +14,8 @@ class TestProblem(unittest.TestCase):
     -item quantity in cart is natural number >=1 before calculating price
     of that item
     - cart must have at least one item to calculate price
+    - if user has multiple cart tabs open at same time, we only want most recent
+    call to the cart
     """
     def test_sample(self):
         self.assertEqual(1, 1)

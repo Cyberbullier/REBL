@@ -17,14 +17,14 @@
 <!-- wrap body in bootstrap container class -->
     <div class="container">
         {% include 'shop/header.html' %}
-        {%  include 'shop/navbar.html' %}
+        {% include 'shop/navbar.html' %}
         {% block content %}{% endblock %}
 
     <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}" ></script>
     </div>
-    {%  include 'shop/footer.html' %}
+    {% include 'shop/footer.html' %}
 
 </body>
 </html>

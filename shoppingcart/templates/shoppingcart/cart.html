@@ -64,12 +64,14 @@
                             <!-- second argument for url is int for product id -->
                             <!-- only implemented stock manipulation for adding stuff to cart, didnt do when deleting stuff from cart -->
                             <a href="{%  url 'shop:shoppingcart:add_cart' x.product.id %}" class="custom_a"><i class="fas fa-plus-circle custom_icon"></i></a>&nbsp;
-                        &nbsp;<a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp:<a href="{% url 'shop:shoppingcart:full_remove_from_cart' x.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
+                        &nbsp;<a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp;
+                            <a href="{% url 'shop:shoppingcart:full_remove_from_cart' x.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
                         </td>
                     <!-- if we can't add more products to the cart -->
                     {% else %}
                      <td>
-                        &nbsp;<a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp;<a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
+                        &nbsp;<a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp;
+                         <a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
                      </td>
                     <td>
 
@@ -105,15 +107,26 @@
             </tbody>
             </table>
         <div class="mx-auto">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="{{ data_key }}"
+                data-amount="{{ stripe_total }}"
+                data-name="REBL"
+                data-description={{ description }}
+                data-image='{% static 'img/logo.jpg' %}
+                data-locale="auto"
+                data-currency="cad"
+                data-shipping-address="true"
+                data-billing-adress="true"
+                data-zip-code="true">
+                </script>
+            </form>
             <a href="{% url 'shop:index' %}" class="btn btn-secondary btn-block custom_button"> click me to continue shopping</a>
-
         </div>
-
         </div>
-        <br>
-
-
-
     </div>
+<br>
 {% endif %}
 {% endblock %}

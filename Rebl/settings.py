@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+# doesnt recognize  packages/3rd party apps installed with pipenv????why?
 #import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -41,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third party
     'crispy_forms',
+    'stripe',
     'sorl.thumbnail',
+
 
 
     # custom apps
@@ -144,6 +147,11 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
+
+# stripe settings
+STRIPE_PUBLISHABLE_KEY = 'pk_test_chgSsG2gRzRwu6HP7L92Z0ph'
+STRIPE_SECRET_KEY = 'sk_test_bvXRVKS8lvATZky07xhvXUHD'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #configure django app for heroku
 #django_heroku.settings(locals())
