@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'mysite',
     'shop',
     'search',
-    'shoppingcart'
+    'shoppingcart',
+    'order',
 ]
 
 MIDDLEWARE = [
@@ -151,6 +152,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 # stripe settings
 STRIPE_PUBLISHABLE_KEY = 'pk_test_chgSsG2gRzRwu6HP7L92Z0ph'
 STRIPE_SECRET_KEY = 'sk_test_bvXRVKS8lvATZky07xhvXUHD'
+
+# mailgun settings
+EMAIL_HOST = 'smtp.mailgun.org'
+# secure port that uses TLS encryption
+EMAIL_PORT = '587'
+# since using this type of encryption
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'postmaster@sandboxe5d1dc112fc34991a23b5db05172fa28.mailgun.org'
+EMAIL_HOST_PASSWORD = '35bb7d393e4158dfc47e6e4681fc67cf-3939b93a-96a70cfe'
 
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #configure django app for heroku
