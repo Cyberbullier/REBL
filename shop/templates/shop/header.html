@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{%  load staticfiles %}
+<header>
+        <!-- for url,use html file path name in urls.py -->
+        <!-- for static, filepath name rules are same as normal html -->
+
+         <a href="{% url 'shop:index' %}"><img src="{% static 'img/jeff_header.jpg' %}" alt="header image" ></a>
+</header>

@@ -1,10 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{%  extends 'shop/base.html' %}
+{% load staticfiles %}
+{% block metadescription %}
+    <!-- rememebr double braces in django templates lets you access variables
+    from context dict -->
+    {% if category %}
+        # truncates('...') description after 155 words
+        {{ category.description|truncatewords:155 }}
+    {% else %}
+        shop homepage
+    {% endif %}
+{% endblock %}
+{% block title %}
+    {% if category %}
+        {{ category.name }} - Rebl shop
+    {% else %}
+        test - Rebl shop
+    {% endif %}
+{% endblock %}
+=============================================================================
+{% block content %}
+    <!-- category navigation bar -->
+    {% if category %}
+        <div class="row my_row_class">
+        <!-- this class helps centre nav bar -->
+            <div class="mx-auto">
+                <p><a href="{% url 'shop:index' %}">our product collection</a>|{{ category.name }} </p>
+            </div>
+        </div>
+    {% endif %}
+<div class="mx-auto">
+
+    <!-- if available post request, display static images -->
+{% if category %}
+        <img class="my_image" src="{{ category.image.url }}" alt="{{ category.name }}">
+</div>
+<br>
+<div>
+    <h1 class="text-center my_title">{{category.name }}</h1>
+    <p class="text-justify">{{category.description }}</p>
+</div>
+{% else %}
+<div class="my_image my_image_padding">
+    <img src="{% static 'shop/jeff_test.jpg' %}" alt='our products collection'>
+</div>
+<br>
+<div>
+    <h1 class="text-center my_title">Our products</h1>
+    <!-- text-justify aligns all text in the wrapper -->
+    <p class="text-justify"> create description when listing all profucts of all cateogries that are currently available in the season</p>
+</div>
+{% endif %}
+    <!-- since using bootstrap, need to incorporate 'container' class in normal html container tags -->
+<div class="container">
+    <div class="row mx-auto">
+    {% for apparel in apparel.object_list %}
+        <!-- use bs grid system to make mobile responsive -->
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-md-12 col-lg-4">
+        <!-- bs card container , text-centr centres title and price-->
+            <div class="card text-center" style="min-width: 18rem;">
+                <!-- places image on top of card -->
+                <a href="{{ apparel.get_url }}"><img class="card-img-top my_image" src="{{ apparel.image.url }}" alt = "{{ apparel.name }}"></a>
+                <div class="card-body">
+                    <h4>{{ apparel.name }}</h4>
+                    <p>&dollar; {{ apparel.price }}</p>
+                </div>
+            </div>
+        </div>
+    {%  endfor %}
+    </div>
+<!-- implemnted proper page number for frontend  with logic from views via paginator-->
+<div class="mx-auto">
+    {% if apparel.paginator.num_pages >= 2 %}
+        <hr>
+        <div class="text-center">
+        <hr>
+        {% for i in apparel.paginator.page_range %}
+            <a href="?page={{i}}" class="btn btn-light act {% if apparel.number == i %}active{% endif %}"> {{ i }}</a>
+        {% endfor %}
+        </div>
+    {% endif %}
+</div>
+<br>
+</div>
+{% endblock %}

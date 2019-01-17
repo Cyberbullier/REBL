@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+# doesnt recognize  packages/3rd party apps installed with pipenv????why?
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,16 +41,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party
-    'crispy_forms',
+    # 'crispy_forms',
+    'stripe',
     'sorl.thumbnail',
 
 
-    # cutom apps
+
+    # custom apps
     'mysite',
     'shop',
+    'search',
+    'shoppingcart',
+    'order',
 ]
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,6 +79,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processors.nav_bar_links',
+                'shoppingcart.context_processors.counter'
             ],
         },
     },
@@ -130,12 +137,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# folder in which you django project will store all of
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# collects content from all the folders specified  in STATICFILES_DIR and stores
+# it into a singular folder
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     #'/var/www/static/',
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join (BASE_DIR, 'static', 'media')
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
+
+# stripe settings
+STRIPE_PUBLISHABLE_KEY = 'pk_test_chgSsG2gRzRwu6HP7L92Z0ph'
+STRIPE_SECRET_KEY = 'sk_test_bvXRVKS8lvATZky07xhvXUHD'
+
+# mailgun settings
+EMAIL_HOST = 'smtp.mailgun.org'
+# secure port that uses TLS encryption
+EMAIL_PORT = '587'
+# since using this type of encryption
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'postmaster@sandboxe5d1dc112fc34991a23b5db05172fa28.mailgun.org'
+EMAIL_HOST_PASSWORD = '35bb7d393e4158dfc47e6e4681fc67cf-3939b93a-96a70cfe'
+
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
+#configure django app for heroku
+django_heroku.settings(locals())
+

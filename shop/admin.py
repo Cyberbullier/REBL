@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Season, Category, Apparel
+from .models import Season, Category, Apparel_products, Misc_products
 
 # Register your models here.
 
@@ -23,22 +23,28 @@ class Category_admin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug':('name', )}
 
-
-
-
-
-
-
 admin.site.register(Category, Category_admin)
-
 class Apparel_admin(admin.ModelAdmin):
     """
     admin authorization to model
     """
-    list_display = ['name', 'slug', 'description', 'price', 'date_created', 'date_latest_update', 'product_available']
+    list_display = ['name', 'slug', 'description',
+                    'price', 'date_created', 'date_latest_update',
+                    'product_available', 'season', 'category'
+                    ]
     # can't edit fields that you put in the other classes list_editable, maybe change field name?
 
     prepopulated_fields = {'slug':('name', )}
 
 
-admin.site.register(Apparel, Apparel_admin)
+admin.site.register(Apparel_products, Apparel_admin)
+
+class Misc_admin(Apparel_admin):
+    """
+    admin authorization to model
+    """
+    list_display = ['name', 'slug', 'description',
+                    'price', 'date_created', 'date_latest_update',
+                    'product_available'
+                    ]
+admin.site.register(Misc_products, Misc_admin)

@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load staticfiles %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    <!-- added active class to this list -->
+        <li class="nav-item dropdown {% if 'shop' in request.path %}active{% endif %}">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          shop
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'shop:index' %}">all products</a>
+            {% for cat_link in links %}
+                <a class="dropdown-item" href="{{ cat_link.get_url }}">{{ cat_link.name }}</a>
+            {% endfor %}
+        </div>
+        </li>
+<!-- implement icon for shopping cart -->
+    {% if item_count > 0 %}
+      <li class="nav-item">
+<!-- implemented quantity count in shopping cart next to shopping cart icon -->
+        <a class="nav-link" href="{% url 'shop:shoppingcart:cart_detail' %}"><i class="fas fa-shopping-bag"></i>({{ item_count }})</a>
+      </li>
+
+    {% endif %}
+    </ul>
+    <form action="{% url 'shop:search:search_result' %}" method="get" class="form-inline my-2 my-lg-0">
+        {% csrf_token %}
+      <input name="q" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+</nav>
+

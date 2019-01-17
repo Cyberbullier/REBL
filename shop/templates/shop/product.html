@@ -1,0 +1,44 @@
+{% extends "shop/base.html" %}
+{% load staticfiles %}
+{% block metadescription %}
+    {{product.description|truncatewords:155}}
+{% endblock %}
+{% block title %}
+    {{ product.name}} - REBL
+{% endblock %}
+{% block content %}
+<div class="my_prod_row_class row">
+    <div class="mx-auto">
+        <p><a href="{% url 'shop:index' %}">Shop Homepage</a>
+        |<a href="{{product.category.get_url}}"> {{ product.category }}</a>
+        | {{ product.name }}
+        </p>
+    </div>
+        <div class="container">
+            <br>
+            <div class="row">
+            <!-- configure this div depending on photo dimensions/how many photos you want per row for mobile responsiveness -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                    <!-- min width given for div that has project image -->
+                    <div style="min-width: 18rem">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </div>
+                </div>
+<!-- configure this div depending on how many photos per row + text associated with image for mobile responsiveness -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                    <div>
+                        <h1 class="my_prod_title">{{ product.name }}</h1>
+                        <p>${{ product.price }}</p>
+                        <p class="my_title">product description</p>
+                        <p class="text-justify">{{ product.description }}</p>
+                        {% if product.stock <= 0 %}
+                            <p class="my_prod_text text-justifytouch"><b>Out of Stock</b></p>
+                        {% else %}
+                            <a class="btn-secondary btn" href="{% url 'shop:shoppingcart:add_cart' product.id %}">add to cart</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}
