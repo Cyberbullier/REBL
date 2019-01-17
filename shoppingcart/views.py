@@ -152,6 +152,13 @@ def cart_detail(request, cart_items=None):
                     print('order has been create and updated proper2ly')
                     '''for now redirect to shop main page until i make
                     the thank you page '''
+                    try:
+                        # call prebuilt function to send email to customer
+                        customer_email(order_details.id)
+                        print(' you have successfuly sent an email to the customer')
+                    except IOError as e:
+                        # if email cannot be sent
+                        return e
                     return redirect('shop:order:thanks', order_details.id)
             except ObjectDoesNotExist:
                 pass
