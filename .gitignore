@@ -3,11 +3,12 @@ __pycache__/
 .DS_Store
 
 *.py[cod]
-*$py.class
+*$py.classls
 
 # C extensions
 *.so
-
+# idkkkkkkk
+.idea/workspace.xml
 # Distribution / packaging
 .Python
 build/

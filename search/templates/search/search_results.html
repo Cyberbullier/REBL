@@ -1,0 +1,35 @@
+{% extends "shop/base.html" %}
+{% load staticfiles %}
+{% block metadescription %}
+    <p>idkkkkkkkk</p>
+{% endblock %}
+{% block title %}
+    search - REBL
+{% endblock %}
+{% block content %}
+    <div>
+        <p class="text-center my_search_text"> FUCKING RESULTS RELATED TO <b>{{ query }}</b></p>
+    </div>
+    <div class="container">
+        <div class="row mx-auto">
+        {% for apparel in products%}
+            <!-- use bs grid system to make mobile responsive -->
+            <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-md-12 col-lg-4">
+            <!-- bs card container , text-centr centres title and price-->
+                <div class="card text-center" style="min-width: 18rem;">
+                    <!-- places image on top of card -->
+                    <a href="{{ apparel.get_url }}"><img class="card-img-top my_image" src="{{ apparel.image.url }}" alt = "{{ apparel.name }}"></a>
+                    <div class="card-body">
+                        <h4>{{ apparel.name }}</h4>
+                        <p>&dollar; {{ apparel.price }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="mx-auto row">
+                <p class="text-center my_search_text"> Null results, query is None</p>
+            </div>
+        {%  endfor %}
+        </div>
+    </div>
+{%  endblock %}

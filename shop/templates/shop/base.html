@@ -3,17 +3,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="{% block metadescription %}{% endblock %}"
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{% block metadescription %}{% endblock %}">
+<!-- google mr roboto font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
+
 </head>
 <body>
-    <div>
+<!-- wrap body in bootstrap container class -->
+    <div class="container">
         {% include 'shop/header.html' %}
-        {%  include 'shop/navbar.html' %}
+        {% include 'shop/navbar.html' %}
         {% block content %}{% endblock %}
 
-
+    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" ></script>
     </div>
-    {%  include 'mysite/footer.html' %}
+    {% include 'shop/footer.html' %}
+
 </body>
 </html>

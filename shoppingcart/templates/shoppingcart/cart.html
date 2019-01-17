@@ -1,0 +1,133 @@
+{% extends "shop/base.html" %}
+{% load staticfiles %}
+{% block metadescription %}
+    random shopping cart page  l o l
+{% endblock %}
+{% block title %}
+    Shopping cart  - REBL
+{% endblock %}
+{% block content %}
+{% if not cart_items %}
+    <div>
+        <div class="text-center">
+            <br>
+            <h1 class="text-center my_title">YOooooo it's empty</h1>
+            <br>
+            <p class="text-center">please click <a href="{% url 'shop:index' %}">here</a>
+                to be redirected to shop homepage!
+            </p>
+        </div>
+    </div>
+{% else %}
+    <div>
+        <div class="text-center">
+        <br>
+        <h1 class="text-center my_title"> your shopping cart
+        </h1>
+        <br>
+        </div>
+    </div>
+    <div class="mx-auto row">
+        <div class="col-sm-12 col-md-12 col-lg-6 text-center col-12">
+            <table class="custom_table table">
+                <thead class="custom_thead">
+                <tr>
+                    <th colspan="5">
+                        your items
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for x in cart_items %}
+                    <tr>
+                    <!-- table cell -->
+                        <td>
+                            <!-- custom_image class resizes image -->
+                            <a href="{{ x.product.get_absolute_url }}"><img src="{{ x.product.image.url }}" alt="nigger"
+                            class="float-left custom_image"></a>
+                        </td>
+                        <td class="text-left">
+                        {{ x.product.name }}
+                        <br>
+                        SKU: {{ x.product.id }}
+                        <br>
+                        Unit Price: ${{ x.product.price }}
+                        <br>
+                        QTY: {{ x.quantity }} x {{ x.product.price }}
+                        </td>
+                        <td>
+                            ${{ x.amount_due }}
+                        </td>
+                    {% if x.quantity < x.product.stock %}
+                        <td>
+                            <!-- second argument for url is int for product id -->
+                            <!-- only implemented stock manipulation for adding stuff to cart, didnt do when deleting stuff from cart -->
+                            <a href="{%  url 'shop:shoppingcart:add_cart' x.product.id %}" class="custom_a"><i class="fas fa-plus-circle custom_icon"></i></a>&nbsp;
+                        &nbsp;<a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp;
+                            <a href="{% url 'shop:shoppingcart:full_remove_from_cart' x.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
+                        </td>
+                    <!-- if we can't add more products to the cart -->
+                    {% else %}
+                     <td>
+                        &nbsp;<a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp;
+                         <a href="{% url 'shop:shoppingcart:remove_from_cart' x.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
+                     </td>
+                    <td>
+
+                    </td>
+                    {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 text-center col-12">
+            <table class="table custom_table">
+                <thead class="custom_thead">
+                    <tr>
+                        <th>
+                            <p>checkout!</p>
+                        </th>
+                    </tr>
+
+                </thead>
+            <tbody>
+            <tr>
+                <td>
+                    review ur shit before ordering l o l
+                </td>
+            </tr>
+            <tr>
+                <td class="text-left">
+                your total is <strong>${{ total }}</strong>
+                </td>
+            </tr>
+            </tbody>
+            </table>
+        <div class="mx-auto">
+            <!-- content after this doesnt display because of for....-->
+            <form action="" method="POST">
+                {% csrf_token %}
+                <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="{{ data_key }}"
+                data-amount="{{ stripe_total }}"
+                data-name="REBL"
+                data-description='{{ description }}'
+                data-image='{% static 'img/logo.jpg' %}'
+                data-locale="auto"
+                data-currency="cad"
+                data-shipping-address="true"
+                data-billing-address="true"
+                data-zip-code="true">
+                </script>
+            </form>
+            <a href="{% url 'shop:index' %}" class="btn btn-secondary btn-block custom_button"> click me to continue shopping</a>
+        </div>
+        </div>
+    </div>
+<br>
+{% endif %}
+{% endblock %}
