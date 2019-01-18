@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # 'crispy_forms',
     'stripe',
     'sorl.thumbnail',
+    'imagefit',
 
 
 
@@ -162,6 +163,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'postmaster@sandboxe5d1dc112fc34991a23b5db05172fa28.mailgun.org'
 EMAIL_HOST_PASSWORD = '35bb7d393e4158dfc47e6e4681fc67cf-3939b93a-96a70cfe'
 
+# Image_fit settings
+IMAGEFIT_ROOT = os.path.join(BASE_DIR,'static')
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #configure django app for heroku
 django_heroku.settings(locals())

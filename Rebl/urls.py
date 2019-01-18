@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mysite.urls')),
     path('shop/', include('shop.urls')),
+    path('imagefit/', include('imagefit.urls')),
+
 ]
 
 if settings.DEBUG:

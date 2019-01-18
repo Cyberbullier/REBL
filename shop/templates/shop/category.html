@@ -1,5 +1,6 @@
 {%  extends 'shop/base.html' %}
 {% load staticfiles %}
+{% load imagefit %}
 {% block metadescription %}
     <!-- rememebr double braces in django templates lets you access variables
     from context dict -->
@@ -59,7 +60,9 @@
         <!-- bs card container , text-centr centres title and price-->
             <div class="card text-center" style="min-width: 18rem;">
                 <!-- places image on top of card -->
-                <a href="{{ apparel.get_url }}"><img class="card-img-top my_image" src="{{ apparel.image.url }}" alt = "{{ apparel.name }}"></a>
+                <a href="{{ apparel.get_url }}"><img class="card-img-top my_image" src="{{ apparel.image.url | resize:"400x400,C" }}" alt = "{{ apparel.name }}"></a>
+
+
                 <div class="card-body">
                     <h4>{{ apparel.name }}</h4>
                     <p>&dollar; {{ apparel.price }}</p>

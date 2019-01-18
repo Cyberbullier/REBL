@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e48d84d81395ac8e01bd9bba40ade28216d9f1f7d178f306232596c6454060b5"
+            "sha256": "6babac85dc21850ff2ba7882ee9ed3a09f8a2f2fd3193f98c82bd83b3615bde4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -59,6 +59,13 @@
             "index": "pypi",
             "version": "==2.1.1"
         },
+        "django-appconf": {
+            "hashes": [
+                "sha256:6a4d9aea683b4c224d97ab8ee11ad2d29a37072c0c6c509896dd9857466fb261",
+                "sha256:ddab987d14b26731352c01ee69c090a4ebfc9141ed223bef039d79587f22acd9"
+            ],
+            "version": "==1.0.2"
+        },
         "django-crispy-forms": {
             "hashes": [
                 "sha256:5952bab971110d0b86c278132dae0aa095beee8f723e625c3d3fa28888f1675f",
@@ -74,6 +81,13 @@
             ],
             "index": "pypi",
             "version": "==0.3.1"
+        },
+        "django-imagefit": {
+            "hashes": [
+                "sha256:de95f706f7c2fdb4f23182d837719be9b3bb3f70d8163feba1c41db93669686e"
+            ],
+            "index": "pypi",
+            "version": "==0.6.2"
         },
         "djangorestframework": {
             "hashes": [

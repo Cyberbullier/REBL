@@ -1,5 +1,6 @@
 {% extends "shop/base.html" %}
 {% load staticfiles %}
+{% load imagefit %}
 {% block metadescription %}
     {{product.description|truncatewords:155}}
 {% endblock %}
@@ -21,7 +22,8 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
                     <!-- min width given for div that has project image -->
                     <div style="min-width: 18rem">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <!--<img src="{{ product.image.url }}" alt="{{ product.name }}"> -->
+                        <img src="{{ product.image.url | resize:"600x600,C" }}" alt = "{{ product.name }}">
                     </div>
                 </div>
 <!-- configure this div depending on how many photos per row + text associated with image for mobile responsiveness -->
