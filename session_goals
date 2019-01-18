@@ -1,6 +1,0 @@
-
-
-need to eventually implement:
-1. appropriate logic for different products
-2. even if cart is empty , icon should still appear and you should be able to
-click it, thus getting redirected to empty cart
