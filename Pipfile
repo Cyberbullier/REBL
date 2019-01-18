@@ -20,6 +20,6 @@ Pillow = "==5.2.0"
 django-heroku='*'
 psycopg2 = "*"
 django-imagefit = "*"
-
+Pillow='*'
 [requires]
 python_version = "3.7"

@@ -27,7 +27,7 @@ def entire_product_listing(request, c_slug=None):
         apparel_list=Apparel_products.objects.all().filter(category=c_page,
                                                            product_available=True)
     # implement page numbers and max products per page
-    paginator = Paginator(apparel_list, 1)
+    paginator = Paginator(apparel_list, 6)
     try:
         page = int(request.GET.get('page', 1))
     except:
