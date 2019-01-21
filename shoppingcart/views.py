@@ -145,6 +145,8 @@ def cart_detail(request, cart_items=None):
                     # reduce current shop stock based on succesful orders
                     product = Apparel_products.objects.get(id=ordered_item.product.id)
                     product.stock = ordered_item.product.stock - ordered_item.quantity
+                    # if product.stock <= 0:
+                    #     product.product_available = False
                     product.save()
                     # deletes all relations this order_item, thus item doesnt
                     # appear in cart anymore

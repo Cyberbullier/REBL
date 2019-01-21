@@ -1,9 +1,12 @@
 from django.urls import path, include
 from . import views
-from .views import HomeView
+
+
+# Routers provide an easy way of automatically determining the URL conf.
 
 app_name = 'shop'
 urlpatterns = [
+    # Uri that conntects to api
     # search urlconfig MUST appear before 'productsbycategory'
     path('shoppingcart/', include('shoppingcart.urls')),
     path('search/', include('search.urls')),

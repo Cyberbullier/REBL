@@ -21,8 +21,9 @@ def search_result(request):
         products = Apparel_products.objects.all().filter(
                                                    Q(name__contains=query) |
                                                    Q(description__contains
-                                                     =query)
+                                                     =query), product_available=True
                                                         )
+        print(products)
     context = {'products': products, 'query': query}
     return render(request, 'search/search_results.html', context)
 # Create your views here.

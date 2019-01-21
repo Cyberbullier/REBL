@@ -14,16 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from shop import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+# Routers provide an easy way of automatically determining the URL conf.
+
+
+app_name = 'Rebl'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mysite.urls')),
+    re_path('api/(?P<version>(v1|v2))/', include('shopapi.urls')),    #path('api/', include(router.urls)),
+    #path('api-auth/', include('rest_framework.urls')),
     path('shop/', include('shop.urls')),
-    path('imagefit/', include('imagefit.urls')),
+    path('imagefit/', include('imagefit.urls'))
 
 ]
 
