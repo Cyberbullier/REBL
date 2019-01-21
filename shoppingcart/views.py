@@ -40,8 +40,8 @@ def add_to_cart(request, product_id):
         # overall stock, then it is valid to add to cart
         if cart_item.quantity < cart_item.product.stock:
             cart_item.quantity += 1
-        cart_item.save()
         # updates and saves current cart item count
+        cart_item.save()
     except ShoppingCartItem.DoesNotExist:
         cart_item = ShoppingCartItem.objects.create(product=product,
                                                    shopping_cart=cart,
@@ -171,6 +171,7 @@ def cart_detail(request, cart_items=None):
                'stripe_total': stripe_total, 'description': description,
                'data_key': data_key
                }
+
     return render(request, 'shoppingcart/cart.html', context)
 
 # no request param

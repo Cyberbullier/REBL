@@ -8,9 +8,9 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r'products', ApparelproductsViewSet, basename='product')
-router.register(r'categories', CategoryViewSet)
-router.register(r'shoppingcartitems', ShoppingcartitemViewSet)
+router.register(r'shoppingcartitems', ShoppingcartitemViewSet, basename='shoppingcartitem')
 router.register(r'shoppingcarts', ShoppingcartViewSet)
+router.register(r'categories', CategoryViewSet)
 
 app_name = 'shopapi'
 urlpatterns = [

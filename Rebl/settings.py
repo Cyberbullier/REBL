@@ -65,11 +65,11 @@ REST_FRAMEWORK = {
 
     # inside the Rest framework settings dictionary, add the auth settings
     # Authentication settings
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    ],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    # ],
     'DEFAULT_PERMISSION_CLASSES': [
-         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+         #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
          'rest_framework.permissions.AllowAny'
      ],
     # When you enable API versioning, the request.version attribute will contain a string

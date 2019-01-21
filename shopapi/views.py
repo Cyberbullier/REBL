@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, Http404, HttpResponseNotAllowed
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
-
+from shoppingcart.views import add_to_cart,  remove_from_cart
+import request
 from rest_framework import viewsets
 from .serializers import (ApparelProductSerializer, Apparel_products,
 Category, CategorySerializer, ShoppingCart, ShoppingCartSerializer,
@@ -52,7 +53,7 @@ class ApparelproductsViewSet(viewsets.ModelViewSet):
         if request.data == 'active':
             return Apparel_products.objects.filter(product_available=True)
         else:
-            return HttpResponseNotAllowed('nigger')
+            return HttpResponseNotAllowed('heyyyyyyy theres a bug')
 
     @action(detail=True)
     def deactivate(self, request, **kwwargs):
@@ -82,13 +83,25 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-
-class ShoppingcartitemViewSet(viewsets.ModelViewSet):
-    queryset = ShoppingCartItem.objects.all()
-    serializer_class = ShoppingCartItemSerializer
-    #print(queryset)
-
 class ShoppingcartViewSet(viewsets.ModelViewSet):
+
     queryset = ShoppingCart.objects.all()
     serializer_class = ShoppingCartSerializer
-    # print(queryset)
+    #print(queryset)
+
+class ShoppingcartitemViewSet(viewsets.ModelViewSet):
+
+    serializer_class = ShoppingCartItemSerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    filter_fields = ('product',)
+
+    def get_queryset(self):
+        product = self.request.query_params.get('product')
+        if not product:
+            print('gg bug')
+            item = ShoppingCartItem.objects.all()
+            serializer = ShoppingCartItemSerializer(item, many=True)
+            return Response(serializer.data)
+        else:
+            print(product)
+            return redirect('shop:shoppingcart:add_cart', product)
