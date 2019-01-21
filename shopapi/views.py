@@ -6,7 +6,6 @@ from rest_framework.response import Response
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from shoppingcart.views import add_to_cart,  remove_from_cart
-import request
 from rest_framework import viewsets
 from .serializers import (ApparelProductSerializer, Apparel_products,
 Category, CategorySerializer, ShoppingCart, ShoppingCartSerializer,
