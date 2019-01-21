@@ -1,6 +1,4 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, Http404
-from django.urls import reverse
 from shop.models import Season, Category, Apparel_products, Misc_products
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
@@ -17,7 +15,6 @@ class HomeView(TemplateView):
 def entire_product_listing(request, c_slug=None):
     """all products available"""
     c_page = None
-    apparel_list = None
     if c_slug is None:
         apparel_list = Apparel_products.objects.all().filter(product_available=True)
     else:
@@ -40,9 +37,8 @@ def entire_product_listing(request, c_slug=None):
     context = {'category': c_page, 'apparel': apparel_per_page}
     return render(request, 'shop/category.html', context)
 
+
 # get product description
-
-
 def product_description(request, c_slug, product_slug):
     try:
         product = Apparel_products.objects.get(category__slug=c_slug,

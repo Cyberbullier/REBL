@@ -7,9 +7,6 @@ from django.conf import settings
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 import stripe
-
-
-
 # Create your views here.
 
 
@@ -64,6 +61,7 @@ def remove_from_cart(request, product_id):
         cart_item.delete()
     return redirect('shop:shoppingcart:cart_detail')
 
+
 def full_remove(request, product_id):
     """ fully removes an item from a unique cart"""
     cart = ShoppingCart.objects.get(cart_id=_cart_id(request))
@@ -72,6 +70,7 @@ def full_remove(request, product_id):
                                              shopping_cart=cart)
     cart_item.delete()
     return redirect('shop:shoppingcart:cart_detail')
+
 
 def cart_detail(request, cart_items=None):
     """organizes cart stock according to database, all view calls from this
@@ -93,7 +92,8 @@ def cart_detail(request, cart_items=None):
             total += x.product.price*x.quantity
             count += x.quantity
     except ObjectDoesNotExist:
-        print('you fucked up')
+        pass
+
     stripe.api_key = settings.STRIPE_SECRET_KEY
     stripe_total = int(total * 100)
     description = 'REBL SHOP - new order'
@@ -107,9 +107,9 @@ def cart_detail(request, cart_items=None):
             # billing info
             billing_name = request.POST['stripeBillingName']
             billing_address1 = request.POST['stripeBillingAddressLine1']
-            billing_postalcode =request.POST['stripeBillingAddressZip']
+            billing_postalcode = request.POST['stripeBillingAddressZip']
             billing_country = request.POST['stripeBillingAddressCountryCode']
-            billing_city =request.POST['stripeBillingAddressCity']
+            billing_city = request.POST['stripeBillingAddressCity']
             # shipping info
             shipping_name = request.POST['stripeShippingName']
             shipping_address1 = request.POST['stripeShippingAddressLine1']
@@ -117,9 +117,10 @@ def cart_detail(request, cart_items=None):
             shipping_country = request.POST['stripeShippingAddressCountryCode']
             shipping_city = request.POST['stripeShippingAddressCity']
             customer = stripe.Customer.create(source=token, email=email)
-            charge = stripe.Charge.create(amount=stripe_total, currency='cad',
-                                          customer=customer.id, description=description
-            )
+            charge = stripe.Charge.create(amount=stripe_total,
+                                          currency='cad',
+                                          customer=customer.id,
+                                          description=description)
             # create and save order into database
             try:
                 order_details = Order.objects.create(token=token,
@@ -145,19 +146,14 @@ def cart_detail(request, cart_items=None):
                     # reduce current shop stock based on succesful orders
                     product = Apparel_products.objects.get(id=ordered_item.product.id)
                     product.stock = ordered_item.product.stock - ordered_item.quantity
-                    # if product.stock <= 0:
-                    #     product.product_available = False
                     product.save()
                     # deletes all relations this order_item, thus item doesnt
-                    # appear in cart anymore
+                    # appear in cart views anymore
                     ordered_item.delete()
-                    print('order has been create and updated proper2ly')
-                    '''for now redirect to shop main page until i make
-                    the thank you page '''
+                    '''redirects to thank you page '''
                     try:
                         # call prebuilt function to send email to customer
                         customer_email(order_details.id)
-                        print(' you have successfuly sent an email to the customer')
                     except IOError as e:
                         # if email cannot be sent
                         return e
@@ -174,7 +170,8 @@ def cart_detail(request, cart_items=None):
 
     return render(request, 'shoppingcart/cart.html', context)
 
-# no request param
+
+# no request param needed
 def customer_email(order_id):
     transaction = Order.objects.get(id=order_id)
     order_items = OrderItem.objects.filter(order__id=order_id)

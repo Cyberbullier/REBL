@@ -9,10 +9,6 @@ from django.db.models import Q
 def search_result(request):
     products = None
     query = None
-    # request.GET is python dictionary containing some paramters associated  with
-    # the request object
-
-    # maybe predefined query param?
     if "q" in request.GET:
         query = request.GET.get("q")
         # i..... means search is case insensitive

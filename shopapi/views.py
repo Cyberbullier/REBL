@@ -1,11 +1,10 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect, Http404, HttpResponseNotAllowed
+from django.shortcuts import redirect
+from django.http import HttpResponseNotAllowed
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
-from shoppingcart.views import add_to_cart,  remove_from_cart
+
 from rest_framework import viewsets
 from .serializers import (ApparelProductSerializer, Apparel_products,
 Category, CategorySerializer, ShoppingCart, ShoppingCartSerializer,

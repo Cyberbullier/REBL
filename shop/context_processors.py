@@ -2,8 +2,6 @@
   and available throughtout the  shop app"""
 
 from .models import Category
-from django.urls import reverse
-from django.http import HttpResponseRedirect
 
 
 def nav_bar_links(request) -> dict:

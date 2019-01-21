@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import OrderItem, Order
+from .models import Order
 # Create your views here.
 
 

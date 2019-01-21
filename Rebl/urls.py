@@ -28,8 +28,7 @@ app_name = 'Rebl'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mysite.urls')),
-    re_path('api/(?P<version>(v1|v2))/', include('shopapi.urls')),    #path('api/', include(router.urls)),
-    #path('api-auth/', include('rest_framework.urls')),
+    re_path('api/(?P<version>(v1|v2))/', include('shopapi.urls')),
     path('shop/', include('shop.urls')),
     path('imagefit/', include('imagefit.urls'))
 

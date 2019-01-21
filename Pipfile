@@ -23,7 +23,5 @@ django-imagefit = "*"
 django-filter = "*"
 pygments = "*"
 markdown = "*"
-djangorestframework-jwt = "*"
-
 [requires]
 python_version = "3.7"

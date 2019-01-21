@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>New Order #{{ transaction.id }} - Perfect Cushion Store</title>
+		<title>New Order #{{ transaction.id }} - REBL</title>
 		<style>
             text center {
                  text-align: center!important;
@@ -25,7 +25,7 @@
 	<body>
 		<div class="text-center">
 			<h1>Thanks for shopping with us</h1>
-			<p>This email is to confirm that you have placed an order on the Perfect Cushion Store.<br>Please make sure that all the details of your order are correct.</p>
+			<p>This email is to confirm that you have placed with REBL.<br>Please make sure that all the details of your order are correct.</p>
 		</div>
 		<br>
 		<table>
@@ -63,7 +63,7 @@
 			</tr>
 			<tr>
 				<td colspan="3" style="text-align: right;"><b>Total paid</b></td>
-				<td>Â£{{ transaction.total }}</td>
+				<td>${{ transaction.total }}</td>
 			</tr>
 			<tr>
 				<td valign="top" colspan="2" style="width: 50%;">
@@ -76,7 +76,7 @@
 				</td>
 				<td valign="top" colspan="2" style="width: 50%;">
 					<b>Payment details:</b><br>
-					Â£{{ transaction.total }} was paid successfully via Stripe.
+					${{ transaction.total }} was paid successfully via Stripe.
 				</td>
 			</tr>
 		</table>
