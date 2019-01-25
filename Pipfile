@@ -23,5 +23,7 @@ django-imagefit = "*"
 django-filter = "*"
 pygments = "*"
 markdown = "*"
+python-decouple = "*"
+
 [requires]
 python_version = "3.7"

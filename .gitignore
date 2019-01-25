@@ -91,6 +91,7 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
+#has secret stuff
 .env
 .venv
 env/
@@ -116,5 +117,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-Rebl/settings_secret.py
-Rebl/settings_secret.py
+
+#secret stuff
+.env.txt
+
+

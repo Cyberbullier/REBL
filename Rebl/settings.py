@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from decouple import config
 import django_heroku
 import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -22,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -173,16 +174,16 @@ IMAGEFIT_ROOT = os.path.join(BASE_DIR, 'static')
 django_heroku.settings(locals())
 
 # stripe settings
-STRIPE_PUBLISHABLE_KEY = 'pk_test_chgSsG2gRzRwu6HP7L92Z0ph'
-STRIPE_SECRET_KEY = 'sk_test_bvXRVKS8lvATZky07xhvXUHD'
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY ')
 
 # mailgun settings
-EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST = config('EMAIL_HOST')
 # secure port that uses TLS encryption
-EMAIL_PORT = '587'
+EMAIL_PORT = config('EMAIL_PORT')
 # since using this type of encryption
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'postmaster@sandboxe5d1dc112fc34991a23b5db05172fa28.mailgun.org'
-EMAIL_HOST_PASSWORD = '35bb7d393e4158dfc47e6e4681fc67cf-3939b93a-96a70cfe'
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9-^%nwdc&8uz&7incq3$_0h776b=snpzem5b8!eeacz%iz@#m('
+SECRET_KEY = config('SECRET_KEY')
