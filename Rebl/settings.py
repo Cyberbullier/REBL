@@ -175,7 +175,7 @@ django_heroku.settings(locals())
 
 # stripe settings
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
-STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY ')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 
 # mailgun settings
 EMAIL_HOST = config('EMAIL_HOST')

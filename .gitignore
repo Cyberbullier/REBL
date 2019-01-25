@@ -119,6 +119,6 @@ dmypy.json
 .pyre/
 
 #secret stuff
-.env.txt
+.env
 
 
