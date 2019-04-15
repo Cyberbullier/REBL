@@ -4,10 +4,9 @@
 REBL is an ongoing concept as an eccommerce + creative outlet web app I made for my friends. Recently I decided to revisit this old project and build an api on top of it.
 ## DEMO
 
-I hosted the app on heroku @https://infinite-hamlet-35050.herokuapp.com so you don't have to fork my repo. Instead,
-add the the path /shopapi/v1/ or shopapi/v2/ to access api root.
+I hosted the app on heroku @https://infinite-hamlet-35050.herokuapp.com/shop so you don't have to fork my repo. Instead,
+@https://infinite-hamlet-35050.herokuapp.com/shopapi/v1/ or @https://infinite-hamlet-35050.herokuapp.com/shopapi/v2/
 
-![image](https://user-images.githubusercontent.com/41171387/51468887-ff99f080-1d3d-11e9-9146-7b549163a22c.png)
 
 for the sake of this demo, I will only show how to access endpoints for all products. click on the products GUI link or currentpath/products/
 ![image](https://user-images.githubusercontent.com/41171387/51469213-dc237580-1d3e-11e9-8348-deae7fc6865f.png)

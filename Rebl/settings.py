@@ -173,6 +173,7 @@ IMAGEFIT_ROOT = os.path.join(BASE_DIR, 'static')
 #configure django app for heroku
 django_heroku.settings(locals())
 
+
 # stripe settings
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
