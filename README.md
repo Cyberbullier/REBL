@@ -1,8 +1,7 @@
 # REBL
-# REBL shopify admission
+# An API demo
 
-REBL is an ongoing concept as an eccommerce + creative outlet web app I made for my friends. Recently I decided to revisit this old project and build an api on top of it as part of my shopify application! 
-
+REBL is an ongoing concept as an eccommerce + creative outlet web app I made for my friends. Recently I decided to revisit this old project and build an api on top of it.
 ## DEMO
 
 I hosted the app on heroku @https://infinite-hamlet-35050.herokuapp.com so you don't have to fork my repo. Instead,
